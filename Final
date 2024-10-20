@@ -1,0 +1,961 @@
+1.1 ทดสอบบอร์ด
+
+void setup() {
+  pinMode(D4, OUTPUT);  // กำหนดโหมดของพิน D4 เป็น OUTPUT
+}
+
+void loop() {
+  digitalWrite(D4, LOW);   // ปิดพิน D4
+  delay(1000);             // หน่วงเวลา 1 วินาที
+  digitalWrite(D4, HIGH);  // เปิดพิน D4
+  delay(2000);             // หน่วงเวลา 2 วินาที
+}
+
+2.2 จัดการ serial monitor----------------------------------
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  Serial.print("Test\n");
+  delay(2000);
+}
+
+
+// void setup() {
+//   // Serial.begin(9600);
+//   pinMode(D4, OUTPUT);
+//   // put your setup code here, to run once:
+
+// }
+
+// void loop() {
+//   digitalWrite(D4, LOW);
+//   delay(1000);
+//   digitalWrite(D4, HIGH);
+//   delay(5000);
+//   // put your main code here, to run repeatedly:
+// //   Serial.print("Test\n");
+// //   delay(2000);
+// }
+
+2.2----------------------------------------------
+
+// const int ledPin = D4;
+// void setup() {
+//   pinMode(ledPin, OUTPUT);
+//   Serial.begin(9600);
+// }
+
+// void loop() {
+//   if (Serial.available() > 0) {
+//     char inRead = Serial.read();
+//     if (inRead == '1') {
+//       digitalWrite(ledPin, LOW);
+//       Serial.println("put 1");
+//     } else if (inRead == '0') {
+//       digitalWrite(ledPin, HIGH);
+//       Serial.println("put 0");
+//     } else if (inRead > '1') {
+//       Serial.println("Please enter 0 or 1 only");
+//     }
+//     delay(100);
+//   }
+// }
+
+2.3-------------------------------------------
+
+// const int ledPin = D4;
+// int timeOn = 1000;
+// int timeOff = 2000;
+
+// void setup() {
+//   pinMode(ledPin, OUTPUT);
+//   Serial.begin(9600);
+// }
+// void loop() {
+//   digitalWrite(ledPin, LOW);
+//   Serial.println(1);
+//   delay(timeOn);
+//   digitalWrite(ledPin, HIGH);
+//   Serial.println(0);
+//   delay(timeOff);
+// }
+
+3.1-----------------------------------------
+
+void setup() {
+  pinMode(D6, OUTPUT);  // กำหนดโหมดของพิน D6 เป็น OUTPUT
+}
+
+void loop() {
+  digitalWrite(D6, HIGH);  // เปิดพิน D6
+  delay(1000);             // หน่วงเวลา 1 วินาที
+  digitalWrite(D6, LOW);   // ปิดพิน D6
+  delay(1000);             // หน่วงเวลา 1 วินาที
+}
+
+ไฟกระพริบ SOS----------------------------
+
+// void setup() {
+//   // Serial.begin(9600);
+//   pinMode(D6, OUTPUT);
+//   // put your setup code here, to run once:
+// }
+
+// void loop() {
+//   // S
+//   digitalWrite(D6, LOW);
+//   delay(480);
+//   digitalWrite(D6, HIGH);
+//   delay(240);
+//   digitalWrite(D6, LOW);
+//   delay(240);
+//   digitalWrite(D6, HIGH);
+//   delay(240);
+//   digitalWrite(D6, LOW);
+//   delay(240);
+//   digitalWrite(D6, HIGH);
+//   delay(240);
+//   // O
+//   digitalWrite(D6, LOW);
+//   delay(480);
+//   digitalWrite(D6, HIGH);
+//   delay(480);
+//   digitalWrite(D6, LOW);
+//   delay(240);
+//   digitalWrite(D6, HIGH);
+//   delay(480);
+//   digitalWrite(D6, LOW);
+//   delay(240);
+//   digitalWrite(D6, HIGH);
+//   delay(480);
+//   // S
+//   digitalWrite(D6, LOW);
+//   delay(480);
+//   digitalWrite(D6, HIGH);
+//   delay(240);
+//   digitalWrite(D6, LOW);
+//   delay(240);
+//   digitalWrite(D6, HIGH);
+//   delay(240);
+//   digitalWrite(D6, LOW);
+//   delay(240);
+//   digitalWrite(D6, HIGH);
+//   delay(240);
+// }
+
+-----------------------------------
+
+3.2 
+
+// void setup() {
+//   pinMode(D2, INPUT);
+//   pinMode(D6, OUTPUT);
+// }
+// void loop() {
+//   int buttonStatus = digitalRead(D2);
+//   if (buttonStatus == 0) {
+//     digitalWrite(D6, HIGH);
+//   } else {
+//     digitalWrite(D6, LOW);
+//   }
+
+//   delay(100);
+// }
+
+4.1----------------------------------------
+
+// const int analogPin = A0;
+// int sensorValue = 0;
+
+// void setup() {
+//   Serial.begin(115200);
+// }
+// void loop() {
+//   sensorValue = analogRead(analogPin);
+//   Serial.println(sensorValue);
+//   delay(50);
+// }
+---------------------------------------------
+4.2
+
+// const int analogPin = A0;
+// int sensorValue = 0;
+// int newValue = 0;
+// void setup() {
+//   Serial.begin(115200);
+//   pinMode(D6, OUTPUT);
+// }
+// void loop() {
+//   sensorValue = analogRead(analogPin);
+//   newValue = map(sensorValue, 0, 1023, 100, 1500);
+//   Serial.println(newValue);
+//   digitalWrite(D6, HIGH);
+//   delay(newValue);
+//   digitalWrite(D6, LOW);
+//   delay(50);
+// }
+
+-------------------------------------------------
+5.1
+
+// void setup() {
+//   Serial.begin(9600);
+//   delay(100);
+//   Serial.println("Fill your name and then press enter");
+// }
+
+// void loop() {
+//   if (Serial.available()) {
+//     String name = Serial.readString();
+//     Serial.print("My name is ");
+//     Serial.println(name);
+//   }
+// }
+
+------------------------------------------------------
+5.2
+
+// //NodeMCU Master
+// #include <SPI.h>
+// #define CS 10
+// void setup() {
+//   pinMode(CS, OUTPUT);
+//   digitalWrite(CS, HIGH);
+//   SPI.begin();
+//   Serial.begin(115200);
+//   delay(100);
+// }
+// void loop() {
+//   digitalWrite(CS, LOW);
+//   byte received = SPI.transfer(0x02);
+//   digitalWrite(CS, HIGH);
+//   Serial.print("Received from Slave: ");
+//   Serial.println(received);
+//   delay(1000);
+// }
+
+---
+// Arduino UNO R3 Slave
+#include <SPI.h>
+
+volatile byte data;
+
+void setup() {
+  pinMode(MISO, OUTPUT);    // กำหนดพิน MISO เป็น OUTPUT สำหรับ SPI ในโหมด Slave
+  SPCR |= _BV(SPE);         // เปิดใช้งาน SPI ในโหมด Slave
+  Serial.begin(115200);     // เริ่มต้นการสื่อสาร Serial ด้วย baud rate 115200
+  delay(100);
+}
+
+// ISR (Interrupt Service Routine) สำหรับ SPI 
+ISR(SPI_STC_vect) {
+  data = SPDR;             // รับข้อมูลจากบัฟเฟอร์ SPI
+  SPDR = data + 1;         // ส่งข้อมูลกลับไปยัง Master โดยเพิ่มค่า 1
+}
+
+void loop() {
+  Serial.print("Data received from master: ");
+  Serial.println(data);     // แสดงข้อมูลที่ได้รับจาก Master
+  delay(1000);
+}
+----
+// Arduino UNO R3 Slave
+#include <SPI.h>
+
+volatile byte data;
+
+void setup() {
+  pinMode(MISO, OUTPUT);    // กำหนดพิน MISO เป็น OUTPUT สำหรับ SPI ในโหมด Slave
+  SPCR |= _BV(SPE);         // เปิดใช้งาน SPI ในโหมด Slave
+  Serial.begin(115200);     // เริ่มต้นการสื่อสาร Serial ด้วย baud rate 115200
+  delay(100);
+}
+
+// ISR (Interrupt Service Routine) สำหรับ SPI 
+ISR(SPI_STC_vect) {
+  data = SPDR;             // รับข้อมูลจากบัฟเฟอร์ SPI
+  SPDR = data + 1;         // ส่งข้อมูลกลับไปยัง Master โดยเพิ่มค่า 1
+}
+
+void loop() {
+  Serial.print("Data received from master: ");
+  Serial.println(data);     // แสดงข้อมูลที่ได้รับจาก Master
+  delay(1000);
+}
+
+-------------------------------------------------------------
+
+5.3
+
+// // Arduino UNO R3 Slave
+// #include <Wire.h>
+// void setup() {
+//   pinMode(13, OUTPUT);
+//   Wire.begin(43);
+// }
+// void loop() {
+//   Wire.onReceive(myHandler);
+//   delay(300);
+// }
+
+// void myHandler(int numByte) {
+//   while (Wire.available()) {
+//     char c = Wire.read();
+//     if (c == '1') {
+//       digitalWrite(13, HIGH);
+//     } else if (c == '0') {
+//       digitalWrite(13, LOW);
+//     }
+//   }
+// }
+
+-----
+// NodeMCU Master
+#include <Wire.h>
+
+void setup() {
+  Serial.begin(115200);  // เริ่มต้นการสื่อสาร Serial ด้วย baud rate 115200
+  Wire.begin();          // เริ่มต้น I2C bus
+}
+
+void loop() {
+  if (Serial.available()) {          // ตรวจสอบว่ามีข้อมูลใน Serial หรือไม่
+    String data = Serial.readString();  // อ่านข้อมูลจาก Serial
+    Wire.beginTransmission(43);      // เริ่มส่งข้อมูลไปยังอุปกรณ์ที่มีที่อยู่ 43
+    
+    if (data.indexOf("ON") != -1) {  // ถ้าข้อความที่ได้รับมีคำว่า "ON"
+      Wire.write('1');               // ส่งข้อมูล '1' ไปยัง Slave
+    } else if (data.indexOf("OFF") != -1) {  // ถ้าข้อความที่ได้รับมีคำว่า "OFF"
+      Wire.write('0');               // ส่งข้อมูล '0' ไปยัง Slave
+    }
+    
+    Serial.print("You sent: ");
+    Serial.println(data);            // แสดงข้อมูลที่ส่งออกมาทาง Serial
+    
+    Wire.endTransmission();          // จบการส่งข้อมูล I2C
+  }
+}
+---------------------------------------------------------------------------
+6.1
+
+const int buttonPin = D1;              // กำหนดพิน D1 เป็นปุ่มกด
+volatile bool interruptFlag = false;   // ตัวแปรธงสำหรับการตรวจจับการ interrupt
+volatile int lastState = HIGH;         // เก็บสถานะล่าสุดของปุ่ม
+
+// ฟังก์ชัน interrupt handler
+void ICACHE_RAM_ATTR handleInterrupt() {
+  interruptFlag = true;                // ตั้งค่า interruptFlag เป็น true เมื่อเกิด interrupt
+}
+
+void setup() {
+  Serial.begin(115200);                // เริ่มต้นการสื่อสาร Serial
+  pinMode(buttonPin, INPUT_PULLUP);     // กำหนดให้ buttonPin เป็น input พร้อมใช้ PULLUP
+  attachInterrupt(digitalPinToInterrupt(buttonPin), handleInterrupt, CHANGE);  // เปิดใช้งาน interrupt เมื่อสถานะของปุ่มเปลี่ยน
+}
+
+void loop() {
+  if (interruptFlag) {                 // ตรวจสอบว่ามี interrupt เกิดขึ้นหรือไม่
+    int currentState = digitalRead(buttonPin);  // อ่านสถานะปัจจุบันของปุ่ม
+    
+    if (currentState != lastState) {    // ตรวจสอบว่าปุ่มมีการเปลี่ยนสถานะจากเดิมหรือไม่
+      Serial.print("State changed to: ");
+      Serial.println(currentState == HIGH ? "HIGH" : "LOW");  // แสดงสถานะใหม่ของปุ่ม (HIGH หรือ LOW)
+      lastState = currentState;         // อัปเดตสถานะล่าสุดของปุ่ม
+    }
+    
+    interruptFlag = false;              // รีเซ็ต interruptFlag หลังจากการจัดการเสร็จสิ้น
+  }
+}
+-------------------------------------------------------------------------
+6.2
+
+const int buttonPin = D1;           // กำหนดพิน D1 เป็นปุ่มกด
+volatile bool interruptFlag = false; // ตัวแปรธงสำหรับการตรวจจับการ interrupt
+
+// ฟังก์ชัน interrupt handler
+void ICACHE_RAM_ATTR handleInterrupt() {
+  interruptFlag = true;              // ตั้งค่า interruptFlag เป็น true เมื่อเกิด interrupt
+}
+
+void setup() {
+  Serial.begin(115200);              // เริ่มต้นการสื่อสาร Serial
+  pinMode(buttonPin, INPUT_PULLUP);   // กำหนดให้ buttonPin เป็น input พร้อมใช้ PULLUP
+  attachInterrupt(digitalPinToInterrupt(buttonPin), handleInterrupt, FALLING); // เปิดใช้งาน interrupt เมื่อปุ่มกดลง (FALLING)
+}
+
+void loop() {
+  if (interruptFlag) {               // ตรวจสอบว่ามี interrupt เกิดขึ้นหรือไม่
+    Serial.println("Interrupt Triggered!");  // แสดงข้อความเมื่อ interrupt เกิดขึ้น
+    interruptFlag = false;           // รีเซ็ต interruptFlag หลังจากการจัดการเสร็จสิ้น
+  }
+}
+
+------------------------------------------------------------------------------------
+6.3
+
+const int buttonPin = D1;           // กำหนดพิน D1 เป็นปุ่มกด
+volatile bool interruptFlag = false; // ตัวแปรธงสำหรับการตรวจจับการ interrupt
+
+// ฟังก์ชัน interrupt handler
+void ICACHE_RAM_ATTR handleInterrupt() {
+  interruptFlag = true;              // ตั้งค่า interruptFlag เป็น true เมื่อเกิด interrupt
+}
+
+void setup() {
+  Serial.begin(115200);              // เริ่มต้นการสื่อสาร Serial
+  pinMode(buttonPin, INPUT_PULLUP);   // กำหนดให้ buttonPin เป็น input พร้อมใช้ PULLUP
+  attachInterrupt(digitalPinToInterrupt(buttonPin), handleInterrupt, RISING); // เปิดใช้งาน interrupt เมื่อมีการเปลี่ยนแปลงจาก LOW เป็น HIGH (RISING)
+}
+
+void loop() {
+  if (interruptFlag) {               // ตรวจสอบว่ามี interrupt เกิดขึ้นหรือไม่
+    Serial.println("Rising edge detected!"); // แสดงข้อความเมื่อเกิด rising edge
+    interruptFlag = false;           // รีเซ็ต interruptFlag หลังจากการจัดการเสร็จสิ้น
+  }
+}
+-------------------------------------------------------------------------------
+7.1
+
+#include <Wire.h>
+
+void setup() {
+  Serial.begin(115200);      // เริ่มต้นการสื่อสาร Serial
+  while (!Serial);           // รอให้ Serial พร้อม
+  Wire.begin();              // เริ่มต้น I2C bus
+}
+
+void loop() {
+  Serial.println("\nScanning...");
+  
+  for (byte i = 8; i < 120; i++) { // ประกาศตัวแปร i ในลูป for
+    Wire.beginTransmission(i);      // เริ่มต้นการส่งข้อมูลไปยังอุปกรณ์ที่มีที่อยู่ i
+    
+    if (Wire.endTransmission() == 0) { // ตรวจสอบว่าการส่งข้อมูลสำเร็จ
+      Serial.print("LCD Module Address: "); 
+      Serial.print(i, DEC);            // แสดงที่อยู่ในรูปแบบทศนิยม
+      Serial.print(" (0x");            // แสดงที่อยู่ในรูปแบบเฮกซาเดซิมอล
+      Serial.print(i, HEX);
+      Serial.println(")\n");
+    }
+  }
+  
+  delay(5000); // หน่วงเวลา 5 วินาทีระหว่างการสแกน
+}
+
+-----------------------------------------------------------------
+7.2
+
+#include <LiquidCrystal_I2C.h>
+#include <Wire.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2); // สร้างวัตถุ lcd ที่ใช้ I2C address 0x27
+byte heart[8] = {0x00, 0x00, 0x1F, 0x1F, 0xDE, 0x04, 0x00, 0x00}; // กำหนดรูปหัวใจ
+
+void setup() {
+  lcd.begin();                   // เริ่มต้น LCD
+  lcd.backlight();              // เปิดแบ็คไลท์
+}
+
+void loop() {
+  lcd.home();                   // ไปที่ตำแหน่งเริ่มต้น
+  delay(1000);
+  
+  lcd.print("We love");         // แสดงข้อความ "We love"
+  delay(2000);
+  
+  lcd.setCursor(0, 1);          // ตั้งตำแหน่งของ cursor ที่แถวที่ 2
+  lcd.print("IoT");             // แสดงข้อความ "IoT"
+  delay(2000);
+  
+  lcd.createChar(0, heart);     // สร้างอักขระรูปหัวใจ
+  lcd.setCursor(4, 1);          // ตั้ง cursor ไปที่ตำแหน่ง (4, 1)
+  lcd.write(0);                 // แสดงอักขระหัวใจ
+  delay(2000);
+  
+  // เลื่อนแสดงผลไปทางซ้าย
+  for (int i = 0; i < 16; i++) {
+    lcd.scrollDisplayLeft();
+    delay(200);
+  }
+  
+  // เลื่อนแสดงผลไปทางขวา
+  for (int i = 0; i < 32; i++) {
+    lcd.scrollDisplayRight();
+    delay(200);
+  }
+  
+  // เลื่อนแสดงผลไปทางซ้ายอีกครั้ง
+  for (int i = 0; i < 16; i++) {
+    lcd.scrollDisplayLeft();
+    delay(200);
+  }
+  
+  delay(2000);
+  
+  // ซ่อนการแสดงผลและแสดงอีกครั้ง
+  lcd.noDisplay();
+  delay(500);
+  lcd.display();
+  delay(500);
+  lcd.noDisplay();
+  delay(500);
+  lcd.display();
+  delay(500);
+  
+  // ล้างหน้าจอ
+  lcd.clear();
+  delay(1000);
+  
+  // ซ่อนการแสดงผล
+  lcd.noDisplay();
+  delay(1000);
+  
+  // ปิดแบ็คไลท์
+  lcd.noBacklight();
+  delay(2000);
+}
+
+------------------------------------------------------------------
+7.3
+#include <Adafruit_SSD1306.h>
+#include <Adafruit_GFX.h>
+#include <SPI.h>
+#include <Wire.h>
+
+#define SCREEN_WIDTH 128           // ความกว้างของหน้าจอ OLED
+#define SCREEN_HEIGHT 64           // ความสูงของหน้าจอ OLED
+#define OLED_RESET -1              // ค่า reset สำหรับ OLED (ใช้ -1 หากไม่มีพิน reset)
+#define SCREEN_ADDRESS 0x3C       // ที่อยู่ I2C ของ OLED
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+void setup() {
+  display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS); // เริ่มต้นการใช้งาน OLED
+  display.clearDisplay();                               // ล้างหน้าจอ
+  display.setTextSize(2);                              // ตั้งขนาดตัวอักษร
+  display.setTextColor(WHITE);                         // ตั้งสีตัวอักษร
+  display.setCursor(0, 20);                            // ตั้งตำแหน่ง cursor
+  display.println("Hello");                             // แสดงข้อความ "Hello"
+  display.display();                                   // แสดงผลบนหน้าจอ
+  
+  
+  // เพิ่มเติมส่วนใหม่
+  delay(2000);                                         // หน่วงเวลา 2 วินาที
+  display.clearDisplay();                              // ล้างหน้าจอ
+  display.setTextSize(1);                             // ตั้งขนาดตัวอักษรเป็น 1
+  display.setCursor(0, 28);                           // ตั้งตำแหน่ง cursor ใหม่
+  display.print("0x");                                 // แสดงข้อความ "0x"
+  display.print(0xE6, HEX);                            // แสดงค่า 0xE6 ในรูปแบบเฮกซาเดซิมอล
+  display.print("(HEX) = ");                           // แสดงข้อความ "(HEX) = "
+  display.print(0xE6, DEC);                            // แสดงค่า 0xE6 ในรูปแบบทศนิยม
+  display.println("(DEC)");                            // แสดงข้อความ "(DEC)"
+  display.display();                                   // แสดงผลบนหน้าจอ
+
+  // เพิ่มเติมโค้ดการเลื่อนข้อความ
+  delay(2000);                                         // หน่วงเวลา 2 วินาที
+  display.clearDisplay();                              // ล้างหน้าจอ
+  display.setCursor(0, 0);                            // ตั้งตำแหน่ง cursor ที่มุมซ้ายบน
+  display.println("Show");                              // แสดงข้อความ "Show"
+  display.println("Display");                           // แสดงข้อความ "Display"
+  display.println("Scrolling!");                        // แสดงข้อความ "Scrolling!"
+  display.display();                                   // แสดงผลบนหน้าจอ
+
+  display.startscrollright(0x00, 0x07);               // เริ่มเลื่อนข้อความไปทางขวา
+  delay(4500);                                         // หน่วงเวลา 4.5 วินาที
+  display.stopscroll();                                // หยุดการเลื่อนข้อความ
+  delay(1000);                                         // หน่วงเวลา 1 วินาที
+  display.startscrollleft(0x00, 0x07);                // เริ่มเลื่อนข้อความไปทางซ้าย
+  delay(4500);                                         // หน่วงเวลา 4.5 วินาที
+  display.stopscroll();                                // หยุดการเลื่อนข้อความ
+  delay(1000);                                         // หน่วงเวลา 1 วินาที
+  display.startscrollright(0x00, 0x00);               // เริ่มเลื่อนข้อความไปทางขวา
+  delay(6000);                                         // หน่วงเวลา 6 วินาที
+
+  // เพิ่มเติมการแสดงวงกลมที่เต็ม
+  display.clearDisplay();                              // ล้างหน้าจอ
+  display.setTextColor(WHITE);                         // ตั้งสีตัวอักษร
+  display.setCursor(0, 0);                            // ตั้งตำแหน่ง cursor ที่มุมซ้ายบน
+  display.println("Filled Circle");                     // แสดงข้อความ "Filled Circle"
+  display.fillCircle(64, 35, 20, WHITE);               // วาดวงกลมที่เต็มที่ตำแหน่ง (64, 35) มีรัศมี 20
+  display.display();                                   // แสดงผลบนหน้าจอ
+  delay(2000);                                         // หน่วงเวลา 2 วินาที
+  display.clearDisplay();                              // ล้างหน้าจอ
+}
+
+void loop() {
+  // ไม่มีการทำงานใน loop
+}
+
+----------------------------------------------------------------------------
+7.4
+
+#include <SPI.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#define SCREEN_WIDTH 128           // ความกว้างของหน้าจอ OLED
+#define SCREEN_HEIGHT 64           // ความสูงของหน้าจอ OLED
+#define OLED_RESET -1              // ค่า reset สำหรับ OLED (ใช้ -1 หากไม่มีพิน reset)
+#define SCREEN_ADDRESS 0x3C       // ที่อยู่ I2C ของ OLED
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+// นี่คือการแปลงรูปภาพเป็น bitmap ที่จะแสดงบนจอ OLED
+const unsigned char testallArray[] PROGMEM = {
+  // แทรกรูปภาพในรูปแบบ bitmap ที่นี่
+  // ตัวอย่าง bitmap ขนาด 128x64 pixels (จะต้องแทนที่ด้วยข้อมูลจริง)
+  0x00, 0x00, 0x00, 0x00, // ข้อมูลตัวอย่าง, เปลี่ยนแปลงให้เหมาะสม
+  // เพิ่มข้อมูล pixel ตามต้องการ
+};
+
+void setup() {
+  display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS); // เริ่มต้นการใช้งาน OLED
+  display.clearDisplay();                               // ล้างหน้าจอ
+  display.drawBitmap(0, 0, testallArray, 128, 64, WHITE); // แสดง bitmap ที่ตำแหน่ง (0,0)
+  display.display();                                   // แสดงผลบนหน้าจอ
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+}
+
+------------------------------------------------------------------------------------
+8.1
+
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <DHT.h>
+
+#define DHTPIN D3                // ขาพินที่ใช้เชื่อมต่อ DHT11
+#define DHTTYPE DHT11            // ประเภทของเซ็นเซอร์ DHT
+
+LiquidCrystal_I2C lcd(0x27, 16, 2); // สร้างออบเจ็กต์ LCD
+DHT dht(DHTPIN, DHTTYPE);          // สร้างออบเจ็กต์ DHT
+
+void setup() {
+  dht.begin();                       // เริ่มต้น DHT
+  lcd.begin();                       // เริ่มต้น LCD
+  lcd.backlight();                  // เปิดไฟแบ็คไลท์
+  lcd.print("DHT11 TEST");         // แสดงข้อความบน LCD
+}
+
+void loop() {
+  delay(2000);                      // หน่วงเวลา 2 วินาที
+
+  // อ่านอุณหภูมิและความชื้น
+  float t = dht.readTemperature();  // อ่านอุณหภูมิ
+  float h = dht.readHumidity();     // อ่านความชื้น
+
+  // ตรวจสอบค่าที่อ่านได้
+  if (isnan(t) || isnan(h)) {
+    lcd.clear();
+    lcd.print("DHT Failed");        // หากอ่านค่าล éché.  ่  ล้มเหลว
+  } else {
+    lcd.setCursor(0, 0);            // ตั้งตำแหน่งของเคอร์เซอร์
+    lcd.print("Temp: ");            // แสดงข้อความ "Temp:"
+    lcd.setCursor(7, 0);            // ตั้งตำแหน่งเคอร์เซอร์
+    lcd.print(t);                   // แสดงอุณหภูมิ
+    lcd.setCursor(13, 0);           // ตั้งตำแหน่งเคอร์เซอร์
+    lcd.print("*C");                // แสดงหน่วยอุณหภูมิ
+
+    lcd.setCursor(0, 1);            // ตั้งตำแหน่งเคอร์เซอร์
+    lcd.print("Humid: ");           // แสดงข้อความ "Humid:"
+    lcd.print(h);                   // แสดงความชื้น
+    lcd.setCursor(14, 1);           // ตั้งตำแหน่งเคอร์เซอร์
+    lcd.print("%");                 // แสดงหน่วยความชื้น
+  }
+
+  delay(1000);                      // หน่วงเวลา 1 วินาที
+}
+----------------------------------------------------------------------------
+8.2
+
+const int ledPin = D3;   // พินที่เชื่อมต่อกับ LED
+const int ldrPin = D6;   // พินที่เชื่อมต่อกับ LDR
+
+void setup() {
+  Serial.begin(115200);  // เริ่มต้นการสื่อสารผ่าน Serial
+  pinMode(ledPin, OUTPUT); // ตั้งค่า ledPin เป็น OUTPUT
+  pinMode(ldrPin, INPUT);  // ตั้งค่า ldrPin เป็น INPUT
+}
+
+void loop() {
+  int ldrStatus = digitalRead(ldrPin); // อ่านค่าจาก LDR
+
+  if (ldrStatus == HIGH) { // ตรวจสอบสถานะของ LDR
+    digitalWrite(ledPin, HIGH); // เปิด LED
+    Serial.println("LDR --> Dark, LED --> ON"); 
+  } else {
+    digitalWrite(ledPin, LOW); // ปิด LED
+    Serial.println("LDR --> Bright, LED --> OFF"); 
+  }
+  
+  delay(1000); // หน่วงเวลา 1 วินาที เพื่อไม่ให้ Serial Print ถี่เกินไป
+}
+
+
+--------------------------Day one --------------------------------
+
+// // หน้า 65
+// #include <Wire.h>
+// #include <LiquidCrystal_I2C.h> 
+// #include <DHT.h>
+// #define DHTPIN D3
+// #define DHTTYPE DHT11
+// LiquidCrystal_I2C lcd(0x27, 16, 2);
+// DHT dht(DHTPIN, DHTTYPE);
+// void setup() {
+//   dht.begin();
+//   lcd.begin();
+//   lcd.backlight();
+//   lcd.print("DHT11 TEST");
+// }
+// void loop() {
+//   delay(2000);
+//   float t = dht.readTemperature();
+//   float h = dht.readHumidity();
+
+//   if (isnan(t) || isnan(h)) {
+//     lcd.clear();
+//     lcd.print("DHT Failed");
+//   } else {
+//     lcd.setCursor(0, 0);
+//     lcd.print("Temp: ");
+//     lcd.setCursor(7, 0);
+//     lcd.print(t);
+//     lcd.setCursor(13, 0);
+//     lcd.print("C");
+//     lcd.setCursor(0, 1);
+//     lcd.print("Humid: ");
+//     lcd.print(h);
+//     lcd.setCursor(14, 1);
+//     lcd.print("%");
+//   }
+//   delay(1000);
+// }
+--------------------------------------------------------------------
+// // หน้า 67
+// const int ledPin = D3;
+// const int ldrPin = D6;
+// void setup() {
+//   Serial.begin(112500);
+//   pinMode(ledPin, OUTPUT);
+//   pinMode(ldrPin, INPUT);
+// }
+// void loop() {
+//   int ldrStatus = digitalRead(ldrPin);
+//   if (ldrStatus == 1) {
+//     digitalWrite(ledPin, HIGH);
+//     Serial.println("LDR --> Dark, LED --> ON");
+//   } else {
+//     digitalWrite(ledPin, LOW);
+//     Serial.println("LDR --> Bright, LED --> OFF");
+//   }
+// }
+------------------------------------------------------------
+// หน้า 69
+// #include <Wire.h>
+// #include <LiquidCrystal_I2C.h>
+
+// LiquidCrystal_I2C lcd(0x27, 16, 2);
+// #define TRIG D7
+// #define ECHO D6
+// #define RED_PIN D3
+// #define GREEN_PIN D4
+
+// long duration, distance;
+// void setup() {
+//   pinMode(TRIG, OUTPUT);
+//   pinMode(ECHO, INPUT);
+//   pinMode(RED_PIN, OUTPUT);
+//   pinMode(GREEN_PIN, OUTPUT);
+
+//   lcd.begin();
+//   lcd.backlight();
+//   lcd.home();
+
+//   lcd.print("Check Distance");
+//   lcd.setCursor(0, 1);
+//   lcd.print("Ready");
+//   lcd.clear();
+//   delay(2000);
+// }
+// void loop() {
+//   digitalWrite(TRIG, LOW);
+//   delayMicroseconds(5);
+//   digitalWrite(TRIG, HIGH);
+//   delayMicroseconds(10);
+//   digitalWrite(TRIG, LOW);
+//   duration = pulseIn(ECHO, HIGH);
+//   distance = duration * 0.034 / 2;
+//   lcd.setCursor(0, 0);
+//   lcd.print("Distance: ");
+//   lcd.print(distance);
+//   lcd.print("cm. ");
+
+//   if (distance >= 15) {
+//     digitalWrite(GREEN_PIN, HIGH);
+//     digitalWrite(RED_PIN, LOW);
+//     lcd.setCursor(0, 1);
+//     lcd.print("Safe");
+//   } else {
+//     digitalWrite(GREEN_PIN, LOW);
+//     digitalWrite(RED_PIN, HIGH);
+//     lcd.setCursor(0, 1);
+//     lcd.print("Stop");
+//   }
+//   delay(500);
+// }
+-------------------------------------------------------------------------------
+// // หน้า 73
+// #define buzzerPin D1
+// #define pirPin D2
+// #define ledPin D3
+// int val = 0;
+// bool motionState = false;
+
+// void setup() {
+//   pinMode(buzzerPin, OUTPUT);
+//   pinMode(pirPin, INPUT);
+//   pinMode(ledPin, OUTPUT);
+//   Serial.begin(115200);
+// }
+// void loop() {
+//   val = digitalRead(pirPin);
+//   if (val == HIGH) {
+//     digitalWrite(ledPin, HIGH);
+//     alarm(500, 2000);
+//     delay(150);
+//     if (motionState == false) {
+//       Serial.println("Motion Detected");
+//       motionState = true;
+//     }
+//   } else {
+//     digitalWrite(ledPin, LOW);
+//     noTone(buzzerPin);
+//     delay(150);
+//     if (motionState == true) {
+//       Serial.println("No Motion");
+//       motionState = false;
+//     }
+//   }
+// }
+// void alarm(long duration, int freq) {
+//   tone(buzzerPin, freq);
+//   delay(duration);
+//   noTone(buzzerPin);
+// }
+---------------------------------------------------------------------------------
+// หน้า 76
+#include <MFRC522.h>
+#include <SPI.h>
+#define RST_PIN D1
+#define SS_PIN D2
+MFRC522 mfrc522(SS_PIN, RST_PIN);
+void setup() {
+  Serial.begin(115200);
+  SPI.begin();
+  mfrc522.PCD_Init();
+  Serial.println("Start");
+  delay(1000);
+}
+void loop() {
+  if (mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial()) {
+    String rfid_in = rfid_read();
+    Serial.print(">>>> ");
+    Serial.println(rfid_in);
+    delay(1000);
+  }
+  delay(1);
+}
+String rfid_read() {
+  String content = "";
+  for (byte i = 0; i < mfrc522.uid.size; i++) {
+    content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
+    content.concat(String(mfrc522.uid.uidByte[i], HEX));
+  }
+  content.toUpperCase();
+  return content.substring(1);
+}
+
+------------------------------------------------------------------------------
+// // // หน้า 83
+// #define BLYNK_TEMPLATE_ID "YourTemplateID"
+// #define BLYNK_TEMPLATE_NAME "Quickstart Device"
+// #define BLYNK_AUTH_TOKEN "YourAuthToken"
+// #define BLYNK_PRINT Serial
+// #include <ESP8266WiFi.h>
+// #include <BlynkSimpleEsp8266.h>
+// #define ledPin D6
+// char ssid[] = "vivoT1X";
+// char pass[] = "12345678";
+// BlynkTimer timer;
+// BLYNK_WRITE(VO) {
+//   int pinValue = param.asInt();
+//   if (pinValue == 1) {
+//     digitalWrite(ledPin, HIGH);
+//     Serial.println("LED On");
+//   } else {
+//     digitalWrite(ledPin, LOW);
+//     Serial.println("LED Off");
+//   }
+// }
+// void setup() {
+//   Serial.begin(115200);
+//   Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
+//   pinMode(ledPin, OUTPUT);
+//   digitalWrite(ledPin, LOW);
+// }
+// void loop() {
+//   Blynk.run();
+//   timer.run();
+// }
+
+---------------------------------------------------------------------
+
+// // หน้า 89
+// #define BLYNK_TEMPLATE_ID "YourTemplateID"
+// #define BLYNK_TEMPLATE_NAME "Quickstart Device"
+// #define BLYNK_AUTH_TOKEN "YourAuthToken"
+// #define BLYNK_PRINT Serial
+// #include <ESP8266WiFi.h>
+// #include <BlynkSimpleEsp8266.h>
+// #include <DHT.h>
+
+// char ssid[] = "YourNetworkName";
+// char pass[] = "YourPassword";
+
+
+// #define DHTPIN D5
+// #define DHTTYPE DHT11
+// DHT dht(DHTPIN, DHTTYPE);
+// void setup() {
+//   Serial.begin(115200);
+//   Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
+//   dht.begin();
+// }
+// void loop() {
+//   Blynk.run();
+//   float t = dht.readTemperature();
+//   floath h = dht.readHumidity();
+
+//   if (isnan(t) || isnan(h)) {
+//     Serial.println("DHT sensor failure.");
+//     return;
+//   }
+//   Blynk.virtualWrite(V0, t);
+//   Blynk.virtualWrite(V1, h);
+//   Serial.print("Temperature: ");
+//   Serial.print(t);
+//   Serial.print("°C | ");
+//   Serial.print("Humidity: ");
+//   Serial.print(h);
+//   Serial.println("%");
+//   delay(2000);
+// }
+
+--------------------------------Day Two----------------------------------------------
